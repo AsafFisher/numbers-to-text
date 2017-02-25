@@ -18,7 +18,9 @@ Question 2:
 
 #include <stdio.h>
 #include <stdlib.h>
-enum{NO_ARGS = 1,ONE_ARG,TWO_ARG, TENS = 15};
+#include <assert.h>
+
+enum{NO_ARGS = 1,ONE_ARG,TWO_ARG, TENS = 15, NUMBER_ENTRIES=23};
 
 const char * strings[] = {"zero","one","two","three","four",
 "five","six","seven","eight","nine","ten","eleven","twelve","thirteen",
@@ -106,6 +108,7 @@ int translateFromFile(FILE *input, FILE *output){
     			int tens;
     			int units;
     			tens = number/10;
+                assert(tens < NUMBER_ENTRIES);
     			units = number%10;
     			if(tens == 1){
     				fprintf(output, "%s%s\n", strings[units],strings[TENS+tens]);
